@@ -1,3 +1,4 @@
+OOPS CONCEPT
 #CLASS ATTRIBUTES IN PYTHON:
 class student():
     name="PRABAKARAN"
