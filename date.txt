@@ -1,0 +1,222 @@
+from datetime import *
+import pytz
+tzindia=pytz.timezone('Asia/Kolkata')
+currenttime=datetime.now(tzindia)
+print('India Cureent Time:',currenttime.strftime("%H:%M:%S"))
+
+
+#PYTHON PROGRAM TO GET CURRENT TIME:
+from datetime import datetime
+nowmethod=datetime.now()
+currenttime=nowmethod.strftime("%H:%M:%S")
+print('India Cureent Time:',currenttime)
+##India Cureent Time: 05:03:04
+
+#PYTHON PROGRAM TO GET CURRENT TIME:
+from datetime import datetime
+time=datetime.now().time()
+print('India Cureent Time:',time)
+##India Cureent Time: 05:06:15.916381
+
+#PYTHON PROGRAM TO GET CURRENT TIME:
+import time
+times=time.localtime()
+time=time.strftime("%H:%M:%S",times)
+print('India Cureent Time:',time)
+##India Cureent Time: 05:09:46
+#############################################################################################
+#PYTHON PROGRAM TO GET CURRENT DATE AND TIME:
+import datetime
+currenttime=datetime.datetime.now()
+print("CURRENT DATE AND TIME IS:",currenttime)
+##CURRENT DATE AND TIME IS: 2021-11-15 05:13:55.004399
+
+#PYTHON PROGRAM TO GET CURRENT DATE AND TIME:
+import datetime
+currenttime=datetime.datetime.now()
+print('Year:',end=' ')
+print(currenttime.year)
+	print('Month:',end=' ')
+print(currenttime.month)
+print('Day:',end=' ')
+print(currenttime.day)
+print('Hour:',end=' ')
+print(currenttime.hour)
+print('Minute:',end=' ')
+print(currenttime.minute)
+print('Second:',end=' ')
+print(currenttime.second)
+print('Microsecond:',end=' ')
+print(currenttime.microsecond)
+##Year: 2021
+##Month: 11
+##Day: 15
+##Hour: 5
+##Minute: 22
+##Second: 3
+##Microsecond: 796970
+############################################################################################################
+#PYTHON PROGRAM TO GET YESTERDAY,TODAY,TOMMORROW DATE:
+from datetime import datetime,timedelta
+presentday=datetime.now()
+yesterday=presentday-timedelta(1)
+tommorrow=presentday+timedelta(1)
+print('Yesterday=',yesterday.strftime('%d-%m-%y'))
+print('Presentday=',presentday.strftime('%d-%m-%y'))
+print('Tommorrow=',tommorrow.strftime('%d-%m-%y'))
+##Yesterday= 14-11-21
+##Presentday= 15-11-21
+##Tommorrow= 16-11-21
+#################################################################################################################
+#PYTHON PROGRAM TO DIFFERENCE BETWWEEN CURRENT TIME 
+AND GIVEN TIME:
+def difference(h1,m1,h2,m2):
+    t1=h1*60+m1
+    print(t1)
+    t2=h2*60+m2
+    print(t2)
+    if (t1==t2):
+        print("Both are same times")
+    else:
+        diff=t2-t1
+        h=(int(diff/60))%24
+        m=diff%60
+        print(h,':',m)    
+if __name__=='__main__':
+    difference(7,20,9,45)
+    difference(15,23,18,54)
+    difference(16,20,16,20)
+##440
+##585
+##2 : 25
+##923
+##1134
+##3 : 31
+##980
+##980
+##Both are same times
+###############################################################################################################
+#PYTHON PROGRAM TO CONVERT TIME FROM 12 HOUR TO 24 HOUR FORMAT:
+def convert(str1):
+    if str1[-2:] == "AM" and str1[:2] == "12":
+        return "00"+str1[2:-2]
+    elif str1[-2:] == "AM":
+        return str1[:-2]
+    elif str1[-2:] == " PM" and str1[:2] == "12":
+        return(str1[:-2])
+    else:
+        return str(int(str1[:2])+12)+str1[2:-2]
+print(convert("08:05:45 PM"))
+##20:05:45 
+###################################################################################################
+#PYTHON PROGRAM TO CREATE A LAP TIMER:
+import time
+starttime=time.time()
+lasttime=starttime
+lapno=1
+print("press enter to count laps.\npress ctrl+c stop")
+try:
+    while True:
+        input()
+        laptime=round((time.time()-lasttime),2)
+        totaltime=round((time.time()-starttime),2)
+        print("Lap No:"+str(lapno))
+        print("Total Time:"+str(totaltime))
+        print("Lap Time:"+str(laptime))
+        print("*"*20)
+        lasttime=time.time()
+        lapno+=1
+except KeyboardInterrupt:
+    print("Done")
+##press enter to count laps.
+##press ctrl+c stop
+##
+##Lap No:1
+##0Total Time:0.98
+##Lap Time:0.98
+##********************
+##
+##Lap No:2
+##Total Time:1.78
+##Lap Time:0.77
+##********************
+##
+##Lap No:3
+##Total Time:2.36
+##Lap Time:0.55
+#################################################################################################################
+#CONVERT DATE STRING TO TIMESTAMP IN PYTHON:
+import time
+import datetime
+string="20/01/2020"
+print(time.mktime(datetime.datetime.strptime(string,"%d/%m/%Y").timetuple()))
+##1579507200.0
+
+#CONVERT DATE STRING TO TIMESTAMP IN PYTHON:
+import time
+import datetime
+string="20/01/2020"
+element=datetime.datetime.strptime(string,"%d/%m/%Y")
+tuple=element.timetuple()
+timestamp=time.mktime(tuple)
+print(timestamp)
+##1579507200.0
+
+#CONVERT DATE STRING TO TIMESTAMP IN PYTHON:
+import time
+import datetime
+string="20/01/2020"
+element=datetime.datetime.strptime(string,"%d/%m/%Y")
+timestamp=datetime.datetime.timestamp(element)
+print(timestamp)
+##1579507200.0
+#################################################################################################################
+#HOW TO CONVERT TIMESTAMP STRING TO DATETIME OBJECT IN PYTHON:
+from datetime import datetime
+timestamp=1545730073
+time=datetime.fromtimestamp(11408255600)
+print("Date Time:",time)
+##Date Time: 2331-07-07 16:53:20
+
+#HOW TO CONVERT TIMESTAMP STRING TO DATETIME OBJECT IN PYTHON:
+from datetime import datetime
+timestamp=1545730073
+time=datetime.fromtimestamp(timestamp)
+print("Date Time:",time)
+##Date Time: 2018-12-25 01:27:53
+
+#HOW TO CONVERT TIMESTAMP STRING TO DATETIME OBJECT IN PYTHON:
+from datetime import datetime
+timestamp=1545730073
+time=datetime.fromtimestamp(timestamp).strftime('%d-%m-%y')
+print("Date Time:",time)
+##Date Time: 25-12-18
+##############################################################################################################
+#FIND NUMBER OF TIMES EVERY DAY OCCURS IN A YEAR:
+import datetime
+import calendar
+def dayoccur(year):
+    days=['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']
+    l=[52 for i in range(7)]
+    pos=-1
+    day=datetime.datetime(year,month=1,day=1).strftime("%A")
+    for i in range(7):
+        if day==days[i]:
+            pos=i
+    if calendar.isleap(year):
+        l[pos]+=1
+        l[(pos+1)%7]+=1
+    else:
+        l[pos]+=1
+    for i in range(7):
+        print(days[i],l[i])
+year=2019
+dayoccur(year)
+##Monday 52
+##Tuesday 53
+##Wednesday 52
+##Thursday 52
+##Friday 52
+##Saturday 52
+##Sunday 52
+##########################################################################################################################

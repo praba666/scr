@@ -1,0 +1,577 @@
+#CLASS ATTRIBUTES IN PYTHON:
+class student():
+    name="PRABAKARAN"
+    age="25"
+#getattr mathod
+print(getattr(student,"name"))
+print(getattr(student,"age"))
+print(getattr(student,"gender","No such Attributes Found"))
+#Dot Notation Method
+print(student.name)
+print(student.age)
+#setattr Method
+setattr(student,"name","Tutor Joes")
+print(student.name)
+setattr(student,"gender","Male")
+print(student.gender)
+student.city="Salem"
+print(student.city)
+print(student.__dict__)
+delattr(student,"city")
+print(student.__dict__)
+del student.gender
+print(student.__dict__)
+##PRABAKARAN
+##25
+##No such Attributes Found
+##PRABAKARAN
+##25
+##Tutor Joes
+##Male
+##Salem
+##{'__module__': '__main__', 'name': 'Tutor Joes', 'age': '25', '__dict__': <attribute '__dict__' of 'student' objects>, '__weakref__': <attribute '__weakref__' of 'student' objects>, '__doc__': None, 'gender': 'Male', 'city': 'Salem'}
+##{'__module__': '__main__', 'name': 'Tutor Joes', 'age': '25', '__dict__': <attribute '__dict__' of 'student' objects>, '__weakref__': <attribute '__weakref__' of 'student' objects>, '__doc__': None, 'gender': 'Male'}
+##{'__module__': '__main__', 'name': 'Tutor Joes', 'age': '25', '__dict__': <attribute '__dict__' of 'student' objects>, '__weakref__': <attribute '__weakref__' of 'student' objects>, '__doc__': None}
+############################################################################################################################
+#INSTANT ATTRIBUTES:
+class user:
+    course="C++"
+o=user()
+print(user.__dict__)
+print(user.course)
+print(o.__dict__)
+print(o.course)
+o.course="JAVA"
+print(o.__dict__)
+print(o.course)
+o2=user()
+print(o2.course)
+##{'__module__': '__main__', 'course': 'C++', '__dict__': <attribute '__dict__' of 'user' objects>, '__weakref__': <attribute '__weakref__' of 'user' objects>, '__doc__': None}
+##C++
+##{}
+##C++
+##{'course': 'JAVA'}
+##JAVA
+##C++
+##############################################################################################################################
+#CLASS METHOD:
+class student:
+    name="PRABAKARAN"
+    age=25
+    def printall():
+        print("Name :",student.name)
+        print("Age  : ",student.age)
+student.printall()
+print(student.__dict__)
+print(getattr(student,"printall")())
+###################################################################################################################
+#INSTANCE METHOD:
+class student:
+    name="PRABAKARAN"
+    age=25
+    def printall(self,gender):
+        print("Name :",student.name)
+        print("Age  : ",student.age)
+        print("Gender:",gender)
+o=student()
+o.printall("Male")
+################################################################################################################
+#INIT METHOD IN PYTHON:
+class user:
+    def __init__(self,name):
+        print("CALL WHEN NEW INSTANCE CREADTED")
+        self.name=name
+    def printall(self,gender):
+        print("NAME :",self.name)
+        print("GENDER:",gender)
+o=user("PRABAKARAN")
+o.printall("MALE")
+print(o.__dict__)
+o2=user("TUTOR JOES")
+o2.printall("MALE")
+print(user.__dict__)
+print(o2.__dict__)
+##CALL WHEN NEW INSTANCE CREADTED
+##NAME : PRABAKARAN
+##GENDER: MALE
+##{'name': 'PRABAKARAN'}
+##CALL WHEN NEW INSTANCE CREADTED
+##NAME : TUTOR JOES
+##GENDER: MALE
+##{'__module__': '__main__', '__init__': <function user.__init__ at 0x000000CA3DFC8E50>, 'printall': <function user.printall at 0x000000CA3DFC8EE0>, '__dict__': <attribute '__dict__' of 'user' objects>, '__weakref__': <attribute '__weakref__' of 'user' objects>, '__doc__': None}
+##{'name': 'TUTOR JOES'}
+#########################################################################################################################
+#PROPERTY DECORATOR:
+class student:
+    def __init__(self,name,age):
+        self.name=name
+        self.age=age
+    @property
+    def msg(self):
+        return self.name +" is "+str(self.age)+"  years old"
+o=student("PRABAKARAN",25)
+print(o.name)
+print(o.age)
+print(o.msg)
+o.age=45
+print(o.msg)
+##PRABAKARAN
+##25
+##PRABAKARAN is 25  years old
+##PRABAKARAN is 45  years old
+####################################################################################################################0
+#PROPERTY DECORATOR GETTER AND SETTER:
+class student:
+    def __init__(self,total):
+        self._total=total
+    def average(self):
+        return self._total/5.0
+    @property
+    def total(self):
+        return self._total
+    @total.setter
+    def total(self,t):
+        self._total=t
+o=student(450)
+print("TOTAL:",o.total)
+print("AVERAGE:",o.average())
+o.total=250
+print("TOTAL:",o.total )
+print("AVERAGE:",o.average())
+##TOTAL: 450
+##AVERAGE: 90.0
+##TOTAL: 250
+##AVERAGE: 50.0
+######################################################################################################################
+#PROPERTY DECORATOR GETTER AND SETTER:
+class student:
+    def __init__(self,total):
+        self._total=total
+    def average(self):
+        return self._total/5.0
+    @property
+    def total(self):
+        return self._total
+    @total.setter
+    def total(self,t):
+        if t<0 or t>500:
+            print("INVALID TOTAL AND CANT CHANGE")
+        else:
+            self._total=t
+o=student(450)
+print("TOTAL:",o.total)
+print("AVERAGE:",o.average())
+o.total=550
+print("TOTAL:",o.total )
+print("AVERAGE:",o.average())
+##TOTAL: 450
+##AVERAGE: 90.0
+##INVALID TOTAL AND CANT CHANGE
+##TOTAL: 450
+##AVERAGE: 90.0
+########################################################################################################
+#PROPERTY DECORATOR GETTER AND SETTER:
+class student:
+    def __init__(self,total):
+        self._total=total
+    def average(self):
+        return self._total/5.0
+    @property
+    def total(self):
+        return self._total
+    @total.setter
+    def total(self,t):
+        if t<0 or t>500:
+            print("INVALID TOTAL AND CANT CHANGE")
+        else:
+            self._total=t
+o=student(450)
+print("TOTAL:",o.total)
+print("AVERAGE:",o.average())
+o.total=250
+print("TOTAL:",o.total )
+print("AVERAGE:",o.average())
+##TOTAL: 450
+##AVERAGE: 90.0
+##TOTAL: 250
+##AVERAGE: 50.0
+######################################################################################################################
+#PROPERTY METHOD:
+class student:
+    def __init__(self,total):
+        self._total=total
+    def average(self):
+        return self._total/5.0
+    def getter(self):
+        return self._total
+    def setter(self,t):
+        if t<0 or t>500:
+            print("Invalid Toatal and cant Change")
+        else:
+            self._total=t
+    total=property(getter,setter)
+o=student(450)
+print("TOTAL:",o.total)
+print("AVERAGE:",o.average())
+o.total=350
+print("TOTAL:",o.total)
+print("AVERAGE:",o.average())
+##TOTAL: 450
+##AVERAGE: 90.0
+##TOTAL: 350
+##AVERAGE: 70.0
+#######################################################################################################################
+#CLASS METHOD DECORATOR:
+class student:
+    count=0
+    def __init__(self,name,age):
+        self.name=name
+        self.age=age
+        student.count+=1
+    def printdetails(self):
+        print('Name:',self.name,'Age:',self.age)
+    @classmethod
+    def total(cls):
+        return cls.count
+o=student('Prabakaran',25)
+o.printdetails()
+print('Total Admission:',o.total())
+a=student('Joes',35)
+a.printdetails()
+print('Total Admission:',student.total())
+##Name: Prabakaran Age: 25
+##Total Admission: 1
+##Nmae: Joes Age: 35
+##Total Admission: 2
+###############################################################################################
+#STATIC METHOD IN PYTHON:
+class student:
+    def __init__(self,name,age):
+         self.name=name
+         self.age=age
+    def printdetails(self):
+        print('Name:',self.name,'Age:',self.age)
+    @staticmethod
+    def welcome():
+        print('Welcom to our Institution')
+s1=student('Prabakaran',25)
+s1.printdetails()
+s1.welcome()
+s2=student('Tutor Joes',28)
+s2.printdetails()
+s2.welcome()
+##Name: Prabakaran Age: 25
+##Welcom to our Institution
+##Name: Tutor Joes Age: 28
+##Welcom to our Institution
+####################################################################################################
+#DATA ABSTRACTION AND ENCAPSULATION:
+class library:
+    def __init__(self,books):
+        self.books=books
+    def listbooks(self):
+        print("Available Books")
+        for book in self.books:
+            print(book)
+    def borrowbook(self,borrowbook):
+        if borrowbook in self.books:
+            print('Get Your Books Now')
+            self.books.remove(borrowbook)
+        else:
+            print("Books is Not Available")
+    def receivebooks(self,receivebook):
+        print('You have Returned the Book')
+        self.books.append(receivebook)
+books=['C','C++','JAVA','PYTHON']
+o=library(books)
+msg='1.dsplaybooks 2.borrowbooks3.returnbooks'
+while True:
+    print(msg)
+    ch=int(input('Enter your choice'))
+    if ch == 1:
+        o.listbooks()
+    elif ch==2:
+        borrowbook=input("Enter your borrow book")
+        o.borrowbook(borrowbook)
+    elif ch==3:
+        book=input('ENTER BOOK TO NAME')
+        o.receivebooks(book)
+    else:
+        print('ThankYou come again')
+        quit()
+##1.dsplaybooks 2.borrowbooks3.returnbooks
+##Enter your choice1
+##Available Books
+##C
+##C++
+##JAVA
+##PYTHON
+##1.dsplaybooks 2.borrowbooks3.returnbooks
+##Enter your choice2
+##Enter your borrow bookJAVA
+##Get Your Books Now
+##1.dsplaybooks 2.borrowbooks3.returnbooks
+##Enter your choice1
+##Available Books
+##C
+##C++
+##PYTHON
+##1.dsplaybooks 2.borrowbooks3.returnbooks
+##Enter your choice3
+##ENTER BOOK TO NAMEJAVA
+##You have Returned the Book
+##1.dsplaybooks 2.borrowbooks3.returnbooks
+##Enter your choice1
+##Available Books
+##C
+##C++
+##PYTHON
+##JAVA
+##1.dsplaybooks 2.borrowbooks3.returnbooks
+###########################################################################################################
+#SINGLE INHERITANCE:
+class nokia:
+    company="Nokia India"
+    website="www.nokiaindia.com"
+    def contactdetails(self):
+        print("Addree : cherry Road ,new bus stand, salem ")
+class nokia1100(nokia):
+    def __init__(self):
+        self.name='Nokia'
+        self.model=1100
+    def details(self):
+        print('NAME:',self.name)
+        print('COMPANY:',self.company)
+        print('WEBSITE:',self.website)
+        print('Model:',self.model)
+mobile=nokia1100()
+mobile.details()
+mobile.contactdetails()
+##NAME: Nokia
+##COMPANY: Nokia India
+##WEBSITE: www.nokiaindia.com
+##Model: 1100
+##Addree : cherry Road ,new bus stand, salem 
+###################################################################################################################
+#MULTIPLE INHERITANCE
+class father:
+    def fishing(self):
+        print('Fishing in River')
+    def chess(self):
+        print('Playing chess from Father')
+class mother:
+    def cooking(self):
+        print('Cooking Food')
+    def chess(self):
+        print('Playing chess from Mother')
+class son(father,mother):
+    def ride(self):
+        print('Rinding Bicycle')
+o=son()
+o.fishing()
+o.cooking()
+o.chess()
+##Fishing in River
+##Cooking Food
+##Playing chess from Father
+
+#MULTIPLE INHERITANCE
+class father:
+    def fishing(self):
+        print('Fishing in River')
+    def chess(self):
+        print('Playing chess from Father')
+class mother:
+    def cooking(self):
+        print('Cooking Food')
+    def chess(self):
+        print('Playing chess from Mother')
+class son(mother,father):
+    def ride(self):
+        print('Rinding Bicycle')
+o=son()
+o.fishing()
+o.cooking()
+o.chess()
+##Fishing in River
+##Cooking Food
+##Playing chess from Mother
+##################################################################################################################
+#MULTILEVEL INHERITANCE:
+class grandpa:
+    def ownhouse(self):
+        print('Grandpa House')
+class father(grandpa):
+    def ownbike(self):
+        print('Fathers Bike')
+class son(father):
+    def ownbook(self):
+        print('Son have a Book')
+o=son()
+o.ownhouse()
+o.ownbike()
+o.ownbook()
+##Grandpa House
+##Fathers Bike
+##Son have a Book
+##########################################################################################################
+#FUNCTION OVERRIDING:
+class employe:
+    def workinghrs(self):
+        self.hrs=50
+    def printhrs(self):
+        print("Total working hrs:",self.hrs)
+class trainee(employe):
+    def workinghrs(self):
+        self.hrs=60
+    def resethrs(self):
+        super().workinghrs()
+o=employe()
+o.workinghrs()
+o.printhrs()
+t=trainee()
+t.workinghrs()
+t.printhrs()
+t.resethrs()
+t.printhrs()
+##Total working hrs: 50
+##Total working hrs: 60
+##Total working hrs: 50
+#########################################################################################################################
+#DIAMOND PROBLEM:
+class a:
+    def display(self):
+        print('i am the display the class a')
+class b(a):
+    def display(self):
+        print('i am the display the class b')
+class c(a):
+    def display(self):
+        print('i am the display the class c')
+class d(b,c):
+    pass
+##    def display(self):
+##        print('i am the display the class d')
+o=d()
+o.display()
+##i am the display the class d
+##i am the display the class b
+#####################################################################################################################
+#OPERATOR OVERLOADING:
+class addition:
+    def __init__(self,a):
+        self.a=a
+    def __add__(o1,o2):
+        return o1.a+o2.a
+    def __sub__(o1,o2):
+        return o1.a-o2.a
+o1=addition(10)
+o2=addition(20)
+print('Total:',(o1+o2))
+print('Difference:',(o1-o2))
+##Total: 30
+##Difference: -10
+###################################################################################################################
+#ABSTRACT METHOD AND ABSRACT BASE CLASS:
+from abc import ABC,abstractmethod
+class bank(ABC):
+    @abstractmethod
+    def loan(self):
+         pass
+    @abstractmethod
+    def credit(self):
+         pass
+    @abstractmethod
+    def debit(self):
+         pass
+class sbi(bank):
+    def loan(self):
+        print('we can provide 7.5% intrest loan')
+    def credit(self):
+        print('sbi provide credit')
+    def debit(self):
+        print('sbi provide debit')
+o=sbi()
+o.loan()
+o.credit()
+o.debit()
+##we can provide 7.5% intrest loan
+##sbi provide credit
+##sbi provide debit
+###########################################################################################################################
+#READ A FILE USING READLINE IN PYTHON:
+try:
+    file=open("C:\\Users\\SIVA PRAKASH\\Desktop\\u.txt","r")
+    print(file.read())
+except FileNotFoundError:
+    print('Error :  File Not Found')
+else:
+    file.close()
+##welcome to prabakaran 
+##how are you
+##Error :  File Not Found
+##############################################################################################################
+#READ A FILE USING READLINE IN PYTHON:
+try:
+    file=open("C:\\Users\\SIVA PRAKASH\\Desktop\\u.txt","r")
+##    print(file.readline())
+##    print(file.readline(2))
+    print(file.readlines())
+except FileNotFoundError:
+    print('Error :  File Not Found')
+else:
+    file.close()
+##welcome to prabakaran 
+##
+##ho
+##['w are you']
+#['welcome to prabakaran \n', 'how are you']
+##########################################################################################################################
+#LOOPING THROUGH THE LINES IN PYTHON:
+try:
+    file=open("C:\\Users\\SIVA PRAKASH\\Desktop\\u.txt","r")
+    for line in file:
+        print(line)
+except FileNotFoundError:
+    print('Error :  File Not Found')
+else:
+    file.close()
+##welcome to prabakaran 
+##
+##how are you
+#####################################################################################################################
+#WRITE OR OVERWRITE A FILE IN PYTHON:
+try:
+    file=open("C:\\Users\\SIVA PRAKASH\\Desktop\\u.txt","w")
+    file.write('This is prabakar')
+    file.close()
+    file=open("C:\\Users\\SIVA PRAKASH\\Desktop\\u.txt","r")
+    for line in file:
+        print(line)
+except FileNotFoundError:
+    print('Error :  File Not Found')
+else:
+    file.close()
+##This is prabakar
+#####################################################################################################################
+#WRITE OR OVERWRITE A FILE IN PYTHON:
+try:
+    file=open("C:\\Users\\SIVA PRAKASH\\Desktop\\u.txt","a")
+    file.write('hey hey')
+    file.close()
+    file=open("C:\\Users\\SIVA PRAKASH\\Desktop\\u.txt","r")
+    print(file.read())
+except FileNotFoundError:
+    print('Error :  File Not Found')
+else:
+    file.close()
+##This is prabakar
+##hey hey
+###########################################################################################################
+#DELETE FILE IN PYTHON:
+import os
+if os.path.exists("C:\\Users\\SIVA PRAKASH\\Desktop\\u.txt"):
+    os.remove("C:\\Users\\SIVA PRAKASH\\Desktop\\u.txt")             ######os.rmdir("Folder Name")
+else:
+    print("File Not Found")
+######################################################################################################################
